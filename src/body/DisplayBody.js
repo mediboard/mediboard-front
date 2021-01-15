@@ -1,4 +1,4 @@
-import { React, useState, useEffect } from 'react';
+import { React, useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
@@ -75,7 +75,7 @@ export default function DisplayBody(props) {
 	const renderHeaderButton = (text) => {
 		return (
 			<div id={text} className={classes.toolbarButton} onClick={(e) => handleToolbarButtonClick(e)} 
-			style={{backgroundColor: state.mode == text ? '#7882ff' : '#e3e3e3'}}>
+			style={{backgroundColor: state.mode === text ? '#7882ff' : '#e3e3e3'}}>
 				{text}
 			</div>
 		);
