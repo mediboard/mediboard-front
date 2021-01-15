@@ -8,7 +8,7 @@ import DrugHeader from './DrugHeader';
 
 const StyledButton = withStyles({
   root: {
-    background: '#d44344',
+    background: '#e3e3e3',
     borderRadius: 4,
     border: 0,
     color: 'white',
