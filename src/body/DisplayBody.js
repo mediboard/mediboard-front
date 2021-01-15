@@ -3,7 +3,8 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
 
-import './DisplayBody.css'
+import './DisplayBody.css';
+import DrugHeader from './DrugHeader';
 
 const StyledButton = withStyles({
   root: {
@@ -20,17 +21,28 @@ const StyledButton = withStyles({
 })(Button);
 
 const useStyles = makeStyles((theme) => ({
-	
+	displayContainer: {
+		display: 'block',
+		paddingLeft: 20,
+		paddingRight: 20
+	}
 }))
 
+//TODO this file also needs to get the drug info
+
 export default function DisplayBody(props) {
+	const classes = useStyles();
+
 	return (
-		<div className="displayWindow">
-			<StyledButton
-				variant="contained"
-				size="small"
-			> Show
-			</StyledButton>
+		<div className={classes.displayContainer}>
+			<DrugHeader />
+			<div className="displayWindow">
+				<StyledButton
+					variant="contained"
+					size="small"
+				> Show
+				</StyledButton>
+			</div>
 		</div>
 	)
 }

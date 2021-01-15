@@ -1,8 +1,7 @@
 .displayWindow {
-	margin: 10px;
-	margin-left: 20px;
-	margin-right: 20px;
+	margin-top: 30px;
 	padding: 10px;
 	border-style: solid;
 	border-width: thin;
+	background-color: grey;
 }

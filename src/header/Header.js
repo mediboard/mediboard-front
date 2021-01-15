@@ -30,6 +30,7 @@ const StyledButton = withStyles({
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
+    marginBottom: 20,
   },
   title: {
     display: 'none',
