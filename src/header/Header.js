@@ -1,4 +1,4 @@
-import React from 'react'
+import { React, useState } from 'react'
 import { withStyles, makeStyles, fade } from '@material-ui/core/styles';
 
 import Button from '@material-ui/core/Button';
@@ -8,10 +8,13 @@ import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import InputBase from '@material-ui/core/InputBase';
 import Badge from '@material-ui/core/Badge';
-// import MenuItem from '@material-ui/core/MenuItem';
-// import Menu from '@material-ui/core/Menu';
-// import MenuIcon from '@material-ui/icons/Menu';
 import SearchIcon from '@material-ui/icons/Search';
+import TextField from '@material-ui/core/TextField';
+import Autocomplete from '@material-ui/lab/Autocomplete';
+
+import DrugsHttpClient from '../clientapis/DrugsHttpClient';
+
+const drugsHttpClient = new DrugsHttpClient();
 
 const StyledButton = withStyles({
   root: {
@@ -77,8 +80,39 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const topDrugs = [
+  { title: 'BLAK' },
+  { title: 'WHITE'}
+]
+
 export default function Header(props) {
+  const [state, setState] = useState({
+    'searchData': [],
+  })
+
 	const classes = useStyles();
+
+  const handleSearchOpen = (e) => {
+    e.target.loading = true;
+
+    drugsHttpClient.getTopDrugs().then((response) => {
+      setState(prevState => ({
+        ...prevState,
+        'searchData': response.message.drugs
+      }));
+    }).catch((error) => {
+      alert("Error getting top drugs");
+      console.log(error);
+    }).finally(() => {
+      e.target.loading = false;
+    });
+  }
+
+  const handleSearchOptionSelect = (value) => {
+    if (value != null) {
+      props.setSelectedDrug(value.name);
+    }
+  }
 
 	return (
 		<div className={classes.grow}>
@@ -91,13 +125,16 @@ export default function Header(props) {
             <div className={classes.searchIcon}>
               <SearchIcon />
             </div>
-            <InputBase
-              placeholder="Search…"
-              classes={{
-                root: classes.inputRoot,
-                input: classes.inputInput,
+            <Autocomplete
+              id="combo-box-demo"
+              options={state.searchData}
+              getOptionLabel={(option) => option.name}
+              onChange={(event, newValue) => {
+                handleSearchOptionSelect(newValue);
               }}
-              inputProps={{ 'aria-label': 'search' }}
+              style={{ width: 300 }}
+              onOpen={(e) => handleSearchOpen(e)}
+              renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
             />
           </div>
           <div className={classes.grow} />

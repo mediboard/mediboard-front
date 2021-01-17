@@ -1,13 +1,16 @@
 import logo from './logo.svg';
 import './App.css';
-import DisplayBody from './body/DisplayBody'
-import Header from './header/Header'
+import InfoPage from './InfoPage';
 
 function App() {
+
+  const setSelectedDrug = (drug) => {
+
+  }
+
   return (
     <div className="App">
-      <Header />
-      <DisplayBody />
+      <InfoPage />
     </div>
   );
 }

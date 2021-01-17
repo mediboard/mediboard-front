@@ -1,7 +1,6 @@
 import { React, useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
-import Button from '@material-ui/core/Button';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 
 import './DisplayBody.css';
@@ -10,20 +9,6 @@ import DrugOverview from './DrugOverview';
 
 
 const drugsHttpClient = new DrugsHttpClient();
-
-const StyledButton = withStyles({
-  root: {
-    background: '#e3e3e3',
-    borderRadius: 4,
-    border: 0,
-    color: 'white',
-    height: 40,
-    width: 100,
-  },
-  label: {
-    textTransform: 'capitalize',
-  },
-})(Button);
 
 const useStyles = makeStyles((theme) => ({
 	displayContainer: {
@@ -103,7 +88,7 @@ export default function DisplayBody(props) {
 
 	const loadDrugData = (mode) => {
 		if (mode === 'Overview') {
-			setEffectsData('Gabapentin');
+			setEffectsData(props.selectedDrug);
 		};
 	}
 
@@ -126,7 +111,7 @@ export default function DisplayBody(props) {
 					<AddPhotoAlternateIcon className={classes.drugImage}/>
 				</div>
 				<div className={classes.drugInfo}>
-					<h3>Gabapentin</h3>
+					<h3>Drug</h3>
 					<p>drug that you take that does nothing</p>
 				</div>
 				<div className={classes.toolbar}>
