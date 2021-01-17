@@ -6,6 +6,7 @@ import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 
 import './DisplayBody.css';
 import DrugsHttpClient from '../clientapis/DrugsHttpClient';
+import DrugOverview from './DrugOverview';
 
 
 const drugsHttpClient = new DrugsHttpClient();
@@ -73,8 +74,9 @@ export default function DisplayBody(props) {
 	const classes = useStyles();
 
 	const [state, setState] = useState({
-		mode: 'Overview'
-	})
+		mode: 'bleh',
+		effectsData: {}
+	});
 
 	const renderHeaderButton = (text) => {
 		return (
@@ -87,6 +89,10 @@ export default function DisplayBody(props) {
 
 	const handleToolbarButtonClick = (e) => {
 		var mode = e.target.id;
+		if (mode !== state.mode) {
+			loadDrugData(mode);
+		}
+
 		setState(prevState => ({
 			...prevState,
 			mode: mode
@@ -95,10 +101,22 @@ export default function DisplayBody(props) {
 		e.target.style.backgroundColor = '#7882ff'; // This is eventually going to have to be moved to the sate
 	}
 
-	const getEffectsData = (drug) => {
+	const loadDrugData = (mode) => {
+		if (mode === 'Overview') {
+			setEffectsData('Gabapentin');
+		};
+	}
+
+	const setEffectsData = (drug) => { //TODO have this set some kind of loading bar
 		drugsHttpClient.getEffects(drug).then((data) => {
-			console.log(data);
-		})
+			setState(prevState => ({
+				...prevState,
+				effectsData: data.message
+			}));
+		}).catch((error) => {
+			alert("Failed to fetch drug data");
+			console.log(error);
+		});
 	}
 
 	return (
@@ -116,12 +134,7 @@ export default function DisplayBody(props) {
 				</div>
 			</div>
 			<div className="displayWindow">
-				<StyledButton
-					variant="contained"
-					size="small"
-					onClick={getEffectsData('Gabapentin')}
-				> Show
-				</StyledButton>
+				<DrugOverview {...{...props, ...state}}/>
 			</div>
 		</div>
 	)

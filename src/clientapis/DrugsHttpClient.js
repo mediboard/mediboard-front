@@ -13,13 +13,13 @@ class DrugHttpClient {
 	}
 
 	async getEffects(drug) {
-		console.log( process.env.REACT_APP_BACKEND_URI);
-		axios.get(API_BASE_URL+'/drugs/'+drug+'/effects').then((response) => {
-			if (response.status !== 200) {
-				throw new Error("Failed to collect effects, status: " + response.status);
-			}
-			return response.data;
-		});
+		const response = await axios.get(API_BASE_URL+'/drugs/'+drug+'/effects');
+		if (response.status !== 200) {
+			throw new Error("Failed to collect effects, status: " + response.status);
+		}
+
+		const data = await response.data;
+		return data;
 	}
 }
 

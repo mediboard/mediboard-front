@@ -1,17 +1,30 @@
 import React from 'react';
-import axios from 'axios';
 
-import API_BASE_URL from '../constants/apiconstants';
-import DrugsHttpClient from '../clientapis/DrugsHttpClient';
-
-
-const drugsHttpClient = new DrugsHttpClient();
+import EffectsChart from './effects/EffectsChart';
 
 export default function DrugOverview(props){
 
-	const getEffectsData = (drug) => {
-		drugsHttpClient.getEffects(drug).then((data) => {
-			console.log(data);
-		})
+	const effectsToChartData = (effects) => {
+		if (effects == null || effects == {}) {
+			return undefined;
+		}
+
+		effects.sort((a, b) => {return b.no_effected - a.no_effected});
+		var chartEffects = effects.slice(0, 5).map(effect => {
+			return {
+				"symptom": effect.name,
+				"frequency": effect.percent_effected
+			}
+		});
+
+		return {
+			'chartData': chartEffects
+		}
 	}
+
+	return (
+		<div>
+			<EffectsChart {...effectsToChartData(props.effectsData.effects)}/>
+		</div>
+		)
 }
