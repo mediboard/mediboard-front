@@ -5,6 +5,10 @@ import Button from '@material-ui/core/Button';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 
 import './DisplayBody.css';
+import DrugsHttpClient from '../clientapis/DrugsHttpClient';
+
+
+const drugsHttpClient = new DrugsHttpClient();
 
 const StyledButton = withStyles({
   root: {
@@ -91,6 +95,12 @@ export default function DisplayBody(props) {
 		e.target.style.backgroundColor = '#7882ff'; // This is eventually going to have to be moved to the sate
 	}
 
+	const getEffectsData = (drug) => {
+		drugsHttpClient.getEffects(drug).then((data) => {
+			console.log(data);
+		})
+	}
+
 	return (
 		<div className={classes.displayContainer}>
 			<div className={classes.drugHeader}>
@@ -109,6 +119,7 @@ export default function DisplayBody(props) {
 				<StyledButton
 					variant="contained"
 					size="small"
+					onClick={getEffectsData('Gabapentin')}
 				> Show
 				</StyledButton>
 			</div>
