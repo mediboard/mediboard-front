@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import { withStyles, makeStyles } from '@material-ui/core/styles';
 
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
+import Typography from '@material-ui/core/Typography';
 
 import './DisplayBody.css';
 import DrugsHttpClient from '../clientapis/DrugsHttpClient';
@@ -28,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 	drugInfo: {
 		height: '100%',
-		width: '10%', //Maybe this should be the size of the content instead
+		width: '15%', //Maybe this should be the size of the content instead
 		display: 'inline-block',
 		textAlign: 'left'
 	},
@@ -89,8 +90,8 @@ export default function DisplayBody(props) {
 					<AddPhotoAlternateIcon className={classes.drugImage}/>
 				</div>
 				<div className={classes.drugInfo}>
-					<h3>Drug</h3>
-					<p>drug that you take that does nothing</p>
+					<h3>{props.selectedDrug}</h3>
+					<p>Some of these work</p>
 				</div>
 				<div className={classes.toolbar}>
 					{renderHeaderButton('Overview')}
