@@ -58,8 +58,8 @@ const useStyles = makeStyles((theme) => ({
 export default function DisplayBody(props) {
 	const classes = useStyles();
 
-	const [state, setState] = useState({
-		mode: 'bleh',
+	const [state, setState] = useState({ // All we need is the mode here 
+		mode: 'Overview',
 		effectsData: {}
 	});
 
@@ -74,34 +74,12 @@ export default function DisplayBody(props) {
 
 	const handleToolbarButtonClick = (e) => {
 		var mode = e.target.id;
-		if (mode !== state.mode) {
-			loadDrugData(mode);
-		}
-
 		setState(prevState => ({
 			...prevState,
 			mode: mode
 		}));
 		// TODO props.setMode(mode)
 		e.target.style.backgroundColor = '#7882ff'; // This is eventually going to have to be moved to the sate
-	}
-
-	const loadDrugData = (mode) => {
-		if (mode === 'Overview') {
-			setEffectsData(props.selectedDrug);
-		};
-	}
-
-	const setEffectsData = (drug) => { //TODO have this set some kind of loading bar
-		drugsHttpClient.getEffects(drug).then((data) => {
-			setState(prevState => ({
-				...prevState,
-				effectsData: data.message
-			}));
-		}).catch((error) => {
-			alert("Failed to fetch drug data");
-			console.log(error);
-		});
 	}
 
 	return (

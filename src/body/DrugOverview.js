@@ -1,8 +1,18 @@
-import React from 'react';
+import { React, useState, useEffect } from 'react';
 
 import EffectsChart from './effects/EffectsChart';
+import DrugsHttpClient from '../clientapis/DrugsHttpClient';
+
+
+const drugsHttpClient = new DrugsHttpClient();
 
 export default function DrugOverview(props){
+
+	const [state, setState] = useState({
+		'effectsData': []
+	});
+
+	useEffect(() => {getEffectsData(props.selectedDrug)}, [props.selectedDrug]);
 
 	const effectsToChartData = (effects) => {
 		if (effects == null || effects == {}) {
@@ -22,9 +32,20 @@ export default function DrugOverview(props){
 		}
 	}
 
+	const getEffectsData = async (drug) => { //TODO have this set some kind of loading bar
+		var data = drugsHttpClient.getEffects(drug).then((data) => {
+			setState(prevState => ({
+				...prevState,
+				effectsData: data.message.effects
+			}));
+		}).catch((error) => {
+			console.log(error);
+		});
+	}
+
 	return (
 		<div>
-			<EffectsChart {...effectsToChartData(props.effectsData.effects)}/>
+			<EffectsChart {...effectsToChartData(state.effectsData)}/>
 		</div>
 		)
 }

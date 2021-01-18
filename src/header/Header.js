@@ -59,7 +59,7 @@ const useStyles = makeStyles((theme) => ({
   searchIcon: {
     padding: theme.spacing(0, 2),
     height: '100%',
-    position: 'absolute',
+    position: 'relative',
     pointerEvents: 'none',
     display: 'flex',
     alignItems: 'center',
@@ -134,7 +134,7 @@ export default function Header(props) {
               }}
               style={{ width: 300 }}
               onOpen={(e) => handleSearchOpen(e)}
-              renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
+              renderInput={(params) => <TextField {...params} label="Drug Search" variant="outlined" />}
             />
           </div>
           <div className={classes.grow} />
