@@ -4,9 +4,9 @@ import { withStyles, makeStyles } from '@material-ui/core/styles';
 import AddPhotoAlternateIcon from '@material-ui/icons/AddPhotoAlternate';
 import Typography from '@material-ui/core/Typography';
 
-import './DisplayBody.css';
 import DrugsHttpClient from '../clientapis/DrugsHttpClient';
 import DrugOverview from './DrugOverview';
+import SideBar from './SideBar';
 
 
 const drugsHttpClient = new DrugsHttpClient();
@@ -32,6 +32,16 @@ const useStyles = makeStyles((theme) => ({
 		width: '15%', //Maybe this should be the size of the content instead
 		display: 'inline-block',
 		textAlign: 'left'
+	},
+	drugWindow: {
+		padding: 10,
+		borderStyle: 'solid',
+		borderWidth: 'thin',
+		backgroundColor: '#e3e3e3',
+		float: 'right',
+	},
+	displayWindow: {
+		marginTop: 30,
 	},
 	drugImage: {
 		fontSize: "7em",
@@ -97,9 +107,12 @@ export default function DisplayBody(props) {
 					{renderHeaderButton('Overview')}
 				</div>
 			</div>
-			<div className="displayWindow">
-				<DrugOverview {...{...props, ...state}}/>
-			</div>
+			<div className={classes.displayWindow}>
+				<div className={classes.drugWindow}>
+					<DrugOverview {...{...props, ...state}}/>
+				</div>
+				<SideBar />
+			</div>	
 		</div>
 	)
 }
