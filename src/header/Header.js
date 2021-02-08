@@ -16,45 +16,80 @@ import DrugsHttpClient from '../clientapis/DrugsHttpClient';
 
 const drugsHttpClient = new DrugsHttpClient();
 
-const StyledButton = withStyles({
+const LoginButton = withStyles({
   root: {
-    background: '#d44344',
+    background: '#8186FF',
+    borderRadius: 4,
+    border: 0,
+    color: 'black',
+    height: 30,
+    width: 100,
+    top: '25%',
+    float: 'right',
+    marginRight: 15,
+  },
+  text: {
+    fontSize: 14,
+  }
+})(Button);
+
+const RegisterButton = withStyles({
+  root: {
+    background: 'black',
     borderRadius: 4,
     border: 0,
     color: 'white',
-    height: 50,
-    width: 110,
+    height: 30,
+    width: 100,
+    top: '25%',
+    float: 'right',
   },
-  label: {
-    textTransform: 'capitalize',
-  },
+  text: {
+    fontSize: 14,
+  }
 })(Button);
 
 const useStyles = makeStyles((theme) => ({
   grow: {
     flexGrow: 1,
     marginBottom: 20,
+    marginTop: 20,
+    width: '100%'
   },
   title: {
     display: 'none',
     [theme.breakpoints.up('lg')]: {
       display: 'block',
     },
+    width: '35%',
+    display: 'inline-block'
+  },
+  header: {
+    marginBottom: 20,
+    marginTop: 20,
+    width: '100%',
+    display: 'flex',
+  },
+  topLeft: {
+    position: 'relative',
+    backgroundColor: 'white',
+    '&:hover': {
+      backgroundColor: 'white',
+    },
+    width: '70%',
+    display: 'inline-flex',
+    textAlign: 'left',
+    float: 'left',
+  },
+  right: {
+    width: '30%',
+    float: 'right',
+    paddingRight: 20,
   },
   search: {
-    position: 'relative',
-    borderRadius: theme.shape.borderRadius,
-    backgroundColor: fade(theme.palette.common.white, 0.15),
-    '&:hover': {
-      backgroundColor: fade(theme.palette.common.white, 0.25),
-    },
-    marginRight: theme.spacing(2),
-    marginLeft: 150,
-    width: '100%',
-    [theme.breakpoints.up('lg')]: {
-      marginLeft: theme.spacing(3),
-      width: 'auto',
-    },
+    textAlign: 'center',
+    display: 'inline-block',
+    width: '65%',
   },
   searchIcon: {
     padding: theme.spacing(0, 2),
@@ -64,19 +99,6 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  inputRoot: {
-    color: 'inherit',
-  },
-  inputInput: {
-    padding: theme.spacing(1, 1, 1, 0),
-    // vertical padding + font size from searchIcon
-    paddingLeft: `calc(1em + ${theme.spacing(4)}px)`,
-    transition: theme.transitions.create('width'),
-    width: '100%',
-    [theme.breakpoints.up('md')]: {
-      width: '20ch',
-    },
   },
 }));
 
@@ -115,31 +137,29 @@ export default function Header(props) {
   }
 
 	return (
-		<div className={classes.grow}>
-      <AppBar position="static">
-        <Toolbar>
-          <Typography className={classes.title} variant="h6" noWrap>
-            Mediboard
-          </Typography>
-          <div className={classes.search}>
-            <div className={classes.searchIcon}>
-              <SearchIcon />
-            </div>
-            <Autocomplete
-              id="combo-box-demo"
-              options={state.searchData}
-              getOptionLabel={(option) => option.name}
-              onChange={(event, newValue) => {
-                handleSearchOptionSelect(newValue);
-              }}
-              style={{ width: 300 }}
-              onOpen={(e) => handleSearchOpen(e)}
-              renderInput={(params) => <TextField {...params} label="Drug Search" variant="outlined" />}
-            />
-          </div>
-          <div className={classes.grow} />
-        </Toolbar>
-      </AppBar>
+		<div className={classes.header}>
+      <div className={classes.topLeft}>
+        <Typography variant="h3" className={classes.title}>
+          The Medical Board
+        </Typography>
+        <div className={classes.search}>
+          <Autocomplete
+            id="combo-box-demo"
+            options={state.searchData}
+            getOptionLabel={(option) => option.name}
+            onChange={(event, newValue) => {
+              handleSearchOptionSelect(newValue);
+            }}
+            style={{ width: 300, marginRight: 'auto', marginLeft: 'auto'}}
+            onOpen={(e) => handleSearchOpen(e)}
+            renderInput={(params) => <TextField {...params} label="Drug Search" variant="outlined" />}
+          />
+        </div>
+      </div>
+      <div className={classes.right}>
+        <RegisterButton size="small">Register</RegisterButton>
+        <LoginButton size="small">Login</LoginButton>
+      </div>
     </div>
 		)
 }
