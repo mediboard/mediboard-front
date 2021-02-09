@@ -43,6 +43,7 @@ const RegisterButton = withStyles({
     width: 100,
     top: '25%',
     float: 'right',
+    marginRight: 40,
   },
   text: {
     fontSize: 14,
@@ -64,11 +65,21 @@ const useStyles = makeStyles((theme) => ({
     width: '35%',
     display: 'inline-block'
   },
+  option: {
+    display: 'inline',
+    paddingLeft: 10,
+  },
   header: {
     marginBottom: 20,
     marginTop: 20,
     width: '100%',
+    paddingLeft: 20,
+    paddingRight: 20,
+    display: 'inline-block',
+  },
+  top: {
     display: 'flex',
+    width: '100%',
   },
   topLeft: {
     position: 'relative',
@@ -81,10 +92,16 @@ const useStyles = makeStyles((theme) => ({
     textAlign: 'left',
     float: 'left',
   },
+  bottom: {
+    width: '100%',
+    float: 'left',
+    textAlign: 'left',
+    display: 'inline-block',
+    marginTop: 20,
+  },
   right: {
     width: '30%',
     float: 'right',
-    paddingRight: 20,
   },
   search: {
     textAlign: 'center',
@@ -138,27 +155,43 @@ export default function Header(props) {
 
 	return (
 		<div className={classes.header}>
-      <div className={classes.topLeft}>
-        <Typography variant="h3" className={classes.title}>
-          The Medical Board
-        </Typography>
-        <div className={classes.search}>
-          <Autocomplete
-            id="combo-box-demo"
-            options={state.searchData}
-            getOptionLabel={(option) => option.name}
-            onChange={(event, newValue) => {
-              handleSearchOptionSelect(newValue);
-            }}
-            style={{ width: 300, marginRight: 'auto', marginLeft: 'auto'}}
-            onOpen={(e) => handleSearchOpen(e)}
-            renderInput={(params) => <TextField {...params} label="Drug Search" variant="outlined" />}
-          />
+      <div className={classes.top}>
+        <div className={classes.topLeft}>
+          <Typography variant="h3" className={classes.title}>
+            The Medical Board
+          </Typography>
+          <div className={classes.search}>
+            <Autocomplete
+              id="combo-box-demo"
+              options={state.searchData}
+              getOptionLabel={(option) => option.name}
+              onChange={(event, newValue) => {
+                handleSearchOptionSelect(newValue);
+              }}
+              style={{ width: 300, marginRight: 'auto', marginLeft: 'auto'}}
+              onOpen={(e) => handleSearchOpen(e)}
+              renderInput={(params) => <TextField {...params} label="Drug Search" variant="outlined" />}
+            />
+          </div>
+        </div>
+        <div className={classes.right}>
+          <RegisterButton size="small" href="/register">Register</RegisterButton>
+          <LoginButton size="small">Login</LoginButton>
         </div>
       </div>
-      <div className={classes.right}>
-        <RegisterButton size="small">Register</RegisterButton>
-        <LoginButton size="small">Login</LoginButton>
+      <div className={classes.bottom}>
+        <Typography variant="h5" className={classes.option}>
+          HOME
+        </Typography>
+        <Typography variant="h5" className={classes.option}>
+          Treatments 
+        </Typography>
+         <Typography variant="h5" className={classes.option}>
+          Conditions 
+        </Typography>
+        <Typography variant="h5" className={classes.option}>
+          Mission 
+        </Typography>
       </div>
     </div>
 		)
