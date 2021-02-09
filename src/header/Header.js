@@ -68,6 +68,10 @@ const useStyles = makeStyles((theme) => ({
   option: {
     display: 'inline',
     paddingLeft: 10,
+    "&:hover": {
+      cursor: 'pointer',
+      backgroundColor: '#afb1c9',
+    },
   },
   header: {
     marginBottom: 20,
@@ -127,7 +131,10 @@ const topDrugs = [
 export default function Header(props) {
   const [state, setState] = useState({
     'searchData': [],
-  })
+  });
+  const [navMode, setNavMode] = useState({
+    navMode: 'Home',
+  });
 
 	const classes = useStyles();
 
@@ -145,13 +152,25 @@ export default function Header(props) {
     }).finally(() => {
       e.target.loading = false;
     });
-  }
+  };
 
   const handleSearchOptionSelect = (value) => {
     if (value != null) {
       props.setSelectedDrug(value.name);
     }
-  }
+  };
+
+  const handleNavButtonClick = (e) => {
+    setNavMode(({ navMode: e.target.id }));
+  };
+
+  const renderNavButton = (text) => {
+    return (
+      <Typography id={text} variant="h5" onClick={(e) => handleNavButtonClick(e)} className={classes.option}>
+        {text} 
+      </Typography>     
+      );
+  };
 
 	return (
 		<div className={classes.header}>
@@ -180,19 +199,11 @@ export default function Header(props) {
         </div>
       </div>
       <div className={classes.bottom}>
-        <Typography variant="h5" className={classes.option}>
-          HOME
-        </Typography>
-        <Typography variant="h5" className={classes.option}>
-          Treatments 
-        </Typography>
-         <Typography variant="h5" className={classes.option}>
-          Conditions 
-        </Typography>
-        <Typography variant="h5" className={classes.option}>
-          Mission 
-        </Typography>
-      </div>
+        {renderNavButton('HOME')} 
+        {renderNavButton('Treatments')} 
+        {renderNavButton('Conditions')} 
+        {renderNavButton('Mission')} 
+     </div>
     </div>
 		)
 }
