@@ -2,6 +2,7 @@ import { React, useState } from 'react';
 import { withStyles, makeStyles} from '@material-ui/core/styles';
 import Banner from '../Banner';
 import RegistrationForm from './registrationForm';
+import Header from '../../header/Header';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -16,7 +17,7 @@ export default function RegistrationDisplay() {
 
 	return (
 		<div className={classes.root}>
-			<Banner />
+			<Header />
 			<RegistrationForm />
 		</div>
 		)

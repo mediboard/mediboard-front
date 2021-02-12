@@ -7,7 +7,7 @@ import Typography from '@material-ui/core/Typography';
 import DrugsHttpClient from '../clientapis/DrugsHttpClient';
 import DrugOverview from './DrugOverview';
 import SideBar from './SideBar';
-
+import { HStack, Box, Heading } from '@chakra-ui/react';
 
 const drugsHttpClient = new DrugsHttpClient();
 
@@ -94,25 +94,12 @@ export default function DisplayBody(props) {
 	}
 
 	return (
-		<div className={classes.displayContainer}>
-			<div className={classes.drugHeader}>
-				<div className={classes.drugIcon}>
-					<AddPhotoAlternateIcon className={classes.drugImage}/>
-				</div>
-				<div className={classes.drugInfo}>
-					<h3>{props.selectedDrug}</h3>
-					<p>Some of these work</p>
-				</div>
-				<div className={classes.toolbar}>
-					{renderHeaderButton('Overview')}
-				</div>
-			</div>
-			<div className={classes.displayWindow}>
-				<div className={classes.drugWindow}>
-					<DrugOverview {...{...props, ...state}}/>
-				</div>
-				<SideBar />
-			</div>	
-		</div>
+		<Box>
+		  <HStack float='left' >
+		  	<Heading float='left'>{props.selectedDrug}</Heading>
+		  	
+
+		  </HStack>	
+		</Box>	
 	)
 }
