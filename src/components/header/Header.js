@@ -15,7 +15,7 @@ export default function Header() {
 
   const renderNavButton = (text) => {
     return (
-      <Text fontSize='2xl' sx={{
+      <Text fontSize='xl' sx={{
         "&:hover": {
           cursor: 'pointer',
           borderBottom: (mode.mode === text)?'5px solid '+rgbaSelected:'5px solid '+rgbaHover,
@@ -30,10 +30,10 @@ export default function Header() {
   };
 
   return (
-    <Box>
+    <Box mb='20px'>
       <Box w='100%' mb='5' mt='5' d='flex'>
         <Box w='70%' textAlign='left' d='flex'>
-          <Heading as='h1' size='3xl'>The Medical Board</Heading>
+          <Heading as='h2' size='2xl' >The Medical Board</Heading>
           <Input placeholder='search' w='300px' h='auto' ml='5' sx={{'borderRadius':35}}/>
         </Box>
         <Box w='30%' float='right' textAlign='right'>
