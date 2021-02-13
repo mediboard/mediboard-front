@@ -1,10 +1,8 @@
 import { React, useState, useEffect } from 'react';
 
 import EffectsChart from './effects/EffectsChart';
-import DrugsHttpClient from '../clientapis/DrugsHttpClient';
+import drugsHttpClient from '../../../../services/clientapis/DrugsHttpClient';
 
-
-const drugsHttpClient = new DrugsHttpClient();
 
 export default function DrugOverview(props){
 

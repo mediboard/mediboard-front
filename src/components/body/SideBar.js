@@ -1,25 +1,15 @@
-import { React, useState } from 'react'
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { React, useState } from 'react';
+import { VStack } from '@chakra-ui/react';
 
-const useStyles = makeStyles((theme) => ({
-	container: {
-		width: 200,
-		backgroundColor: '#e7e7e7',
-		textAlign: 'center',
-		paddingTop: 10,
-		paddingBottom: 10,
-	}
-}));
 
 export default function SideBar() {
-	const classes = useStyles();
 	return (
-		<div className={classes.container}>
+		<VStack>
 			<p>Overview</p>	
 			<p>Effects</p>	
 			<p>Uses</p>	
 			<p>Reviews</p>
 			<p>Posts</p>
-		</div>	
+		</VStack>
 		)		
 }
