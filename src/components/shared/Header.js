@@ -1,6 +1,6 @@
 import { React, useState } from 'react';
 
-import { HStack, Box, Heading, Input, Text } from "@chakra-ui/react";
+import { VStack, HStack, Box, Heading, Input, Text } from "@chakra-ui/react";
 import { useStyleConfig } from "@chakra-ui/react";
 import Button from "../shared/Button";
 
@@ -30,8 +30,8 @@ export default function Header() {
   };
 
   return (
-    <Box mb='20px'>
-      <Box w='100%' mb='5' mt='5' d='flex'>
+    <VStack mb='20px' align='false' pl='20px'>
+      <Box w='100%' mb='2' mt='5' d='flex'>
         <Box w='70%' textAlign='left' d='flex'>
           <Heading as='h2' size='2xl' >The Medical Board</Heading>
           <Input placeholder='search' w='300px' h='auto' ml='5' sx={{'borderRadius':35}}/>
@@ -45,6 +45,6 @@ export default function Header() {
         {renderNavButton('Home')}
         {renderNavButton('About')}
       </HStack>
-    </Box>
+    </VStack>
     )
 }

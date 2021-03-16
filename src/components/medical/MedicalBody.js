@@ -1,9 +1,27 @@
+// This is the router of the app
 import { React, useState } from 'react';
 
-import drugsHttpClient from '../../../services/clientapis/DrugsHttpClient';
-import DrugOverview from './treatments/DrugOverview';
-import SideBar from '../SideBar';
-import { HStack, Box, Heading } from '@chakra-ui/react';
+import Header from '../shared/Header';
+import SideBar from './SideBar';
+import { Box, VStack, HStack } from '@chakra-ui/react';
+import Banner from './Banner'
+
+const categories = [
+	{
+		name: 'Biomass',
+		subCategories: [
+			{ name: 'Wheat' },
+			{ name: 'Beans' },
+		]
+	},
+	{
+		name: 'Spores',
+		subCategories: [
+			{ name: 'Maitake' },
+			{ name: 'Penis Envy' },
+		]
+	},
+];
 
 // const useStyles = makeStyles((theme) => ({
 // 	displayContainer: {
@@ -85,11 +103,17 @@ export default function MedicalBody(props) {
 	// 	e.target.style.backgroundColor = '#7882ff'; // This is eventually going to have to be moved to the sate
 	// }
 
+	const [category, setCategory] = useState(undefined);
+
 	return (
-		<Box>
-		  <HStack float='left' >
-		  	<Heading float='left'>Hello World!</Heading>
-		  </HStack>	
-		</Box>	
-	)
+    <VStack w='100%' align='stretch'>
+      <Banner />
+      <HStack spacing={10}>
+        <SideBar 
+        	categories={categories}
+        	category={category}
+        	setCategory={setCategory}/>
+      </HStack>
+    </VStack>
+	);
 }

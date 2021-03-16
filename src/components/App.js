@@ -4,15 +4,22 @@ import {
   Switch,
   Route
 } from "react-router-dom";
-
-import Body from './body/Body';
+import MedicalBody from './medical/MedicalBody';
+import Header from './shared/Header';
 
 
 function App() {
   return (
-    <div className="App">
-      <Body />
-    </div>
+  	<Router>
+	    <div className="App">
+	    	<Header />
+	    	<Switch>
+	    		<Route path='/medical' exact={true}>
+	    			<MedicalBody />
+	    		</Route>
+	     	</Switch>
+	    </div>
+	  </Router>
   );
 }
 
