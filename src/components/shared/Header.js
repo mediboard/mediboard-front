@@ -1,9 +1,10 @@
 import { React, useState } from 'react';
 
-import { VStack, HStack, Box, Heading, Input, Text } from "@chakra-ui/react";
+import { Spacer, VStack, HStack, Box, Heading, Input, Text, Flex } from "@chakra-ui/react";
 import { useStyleConfig } from "@chakra-ui/react";
 import Button from "../shared/Button";
 import { useHistory } from 'react-router-dom';
+import Login from './Login';
 
 
 export default function Header() {
@@ -38,17 +39,16 @@ export default function Header() {
   };
 
   return (
-    <VStack mb='20px' align='false' pl='20px' pr='20px'>
-      <Box w='100%' mb='1' mt='5' d='flex'>
-        <Box w='70%' textAlign='left' d='flex'>
-          <Heading as='h2' size='2xl' >The Medical Board</Heading>
-          <Input placeholder='search' w='300px' h='auto' ml='5' sx={{'borderRadius':35}}/>
-        </Box>
-        <Box w='30%' float='right' textAlign='right'>
-          <Button size="md" variant="purple" mt='3' mr='5'>Login</Button>
+    <VStack mb='20px' align='false' pl='20px' pr='20px' w='100%'>
+      <Flex mb='1' mt='5'>
+        <Heading as='h2' size='2xl' >The Medical Board</Heading>
+        <Input placeholder='search' w='300px' h='auto' ml='5' sx={{'borderRadius':35}}/>
+        <Spacer />
+        <HStack float='right' textAlign='right' justifyContent='right' pl='auto'>
+          <Login />
           <Button size="md" variant="black" mt='3'>Register</Button>
-        </Box>
-      </Box>
+        </HStack>
+      </Flex>
       <HStack float='left' ml='10' spacing="30px">
         {renderNavButton('Home')}
         {renderNavButton('Treatments')}
@@ -56,3 +56,4 @@ export default function Header() {
     </VStack>
   );
 }
+ 
