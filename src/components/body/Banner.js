@@ -1,28 +1,33 @@
 // The shared banner displayed on almost all pages
 import { React, useState } from 'react';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import { 
+	Flex, 
+	Box,
+	Text,
+	VStack,
+	Spacer,
+	Heading } from '@chakra-ui/react';
+import Button from '../shared/Button';
 
 
-const useStyles = makeStyles((theme) => ({
-	root: {
-		width: '100%',
-		marginTop: 10,
-		marginBotom: 10,
-		paddingTop: 10,
-		paddingBottom: 10,
-		background: '#e7e7e7',
-	},
-}))
-
-export default function Banner() {
-
-	const classes = useStyles();
+export default function Banner(props) {
 
 	return (
-		<div className={classes.root}>
-			<h2>
-				header
-			</h2>	
-		</div>
-		);
+		<Flex p='10px 20px 10px 20px' bg='#e0e0e0'>
+			<Box bg='#afb1c9' w='100px' h='100px' mr='20px'/>
+			<VStack align='false'>
+				<Heading size='lg' mb='10px'>
+					header
+				</Heading>
+				<VStack align='false' textAlign='left' spacing='0px'>
+					<Text>brand name</Text>
+					<Text>Manufactorer</Text>
+				</VStack>
+			</VStack>
+			<Spacer />
+			<Box mt='auto' mb='auto'>
+				<Button>Review Treatment</Button>
+			</Box>
+		</Flex>
+	);
 }

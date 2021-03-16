@@ -5,7 +5,6 @@ import DrugOverview from './treatments/DrugOverview';
 import SideBar from '../SideBar';
 import { HStack, Box, Heading } from '@chakra-ui/react';
 
-
 // const useStyles = makeStyles((theme) => ({
 // 	displayContainer: {
 // 		display: 'block',
@@ -61,9 +60,7 @@ import { HStack, Box, Heading } from '@chakra-ui/react';
 
 //TODO this file also needs to get the drug info
 
-export default function DisplayBody(props) {
-	// const classes = useStyles();
-
+export default function MedicalBody(props) {
 	// const [state, setState] = useState({ // All we need is the mode here 
 	// 	mode: 'Overview',
 	// 	effectsData: {}

@@ -9,18 +9,20 @@ export const Button = {
     },
   },
   variants: {
-  	green: {
-  		bg: "#45AB5C",
+  	purple: {
+  		bg: "#8186FF",
   	},
-  	brown: {
-  		bg: "#A07C5B",
+  	black: {
+  		bg: "black",
+      color: "white",
   	},
   },
   baseStyle: {
 		color: "black",
+    borderRadius: "0px",
   },
   defaultProps: {
   	size: "md",
-  	variant: "green",
+  	variant: "purple",
   },
 }

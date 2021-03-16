@@ -37,8 +37,8 @@ export default function Header() {
           <Input placeholder='search' w='300px' h='auto' ml='5' sx={{'borderRadius':35}}/>
         </Box>
         <Box w='30%' float='right' textAlign='right'>
-          <Button size="md" variant="green" mt='3' mr='5'>Login</Button>
-          <Button size="md" variant="brown" mt='3'>Register</Button>
+          <Button size="md" variant="purple" mt='3' mr='5'>Login</Button>
+          <Button size="md" variant="black" mt='3'>Register</Button>
         </Box>
       </Box>
       <HStack float='left' ml='10' spacing="30px">
