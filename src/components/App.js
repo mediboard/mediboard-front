@@ -5,6 +5,7 @@ import {
   Route
 } from "react-router-dom";
 import MedicalBody from './medical/MedicalBody';
+import BoardBody from './board/BoardBody';
 import Header from './shared/Header';
 
 
@@ -16,6 +17,9 @@ function App() {
 	    	<Switch>
 	    		<Route path='/medical' exact={true}>
 	    			<MedicalBody />
+	    		</Route>
+	    		<Route path='/'>
+	    			<BoardBody />
 	    		</Route>
 	     	</Switch>
 	    </div>
